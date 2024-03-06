@@ -5,4 +5,4 @@
       <slot />
     </v-main>
   </div>
-  </template>
+</template>
