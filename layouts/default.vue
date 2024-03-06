@@ -1,6 +1,8 @@
 <template>
   <div>
     <AppBar />
-    <slot />
+    <v-main>
+      <slot />
+    </v-main>
   </div>
   </template>
