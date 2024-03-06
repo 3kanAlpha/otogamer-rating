@@ -32,18 +32,18 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    chuni: '',
-    sdvx: '',
-    score: null,
-  }),
-  methods: {
-    calculateScore() {
-      const chuniRating = parseFloat(this.chuni) || 0;
-      const sdvxVolforce = parseFloat(this.sdvx) || 0;
-      this.score = chuniRating + sdvxVolforce;
+  export default {
+    data: () => ({
+      chuni: '',
+      sdvx: '',
+      score: null,
+    }),
+    methods: {
+      calculateScore() {
+        const chuniRating = parseFloat(this.chuni) || 0;
+        const sdvxVolforce = parseFloat(this.sdvx) || 0;
+        this.score = chuniRating + sdvxVolforce;
+      },
     },
-  },
-}
+  }
 </script>
