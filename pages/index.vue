@@ -12,7 +12,7 @@
     <hr>
     <div id="calc" class="text-center my-8">
       <v-sheet class="mx-auto" width="350">
-        <v-form @submit.prevent>
+        <v-form @submit.prevent="calculateScore">
           <v-text-field
             v-model="chuni"
             label="CHUNITHM Rating (Max)"
@@ -26,22 +26,24 @@
           <v-btn class="mt-2" type="submit" block color="pink-darken-1">Submit</v-btn>
         </v-form>
       </v-sheet>
+      <div v-if="score !== null" class="text-h5 mt-4">総合レーティング: {{ score }}</div>
     </div>
   </v-container>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      chuni: '',
-      sdvx: '',
-      rules: [
-        value => {
-          if (value) return true
-
-          return 'You must enter a value.'
-        },
-      ],
-    }),
-  }
+export default {
+  data: () => ({
+    chuni: '',
+    sdvx: '',
+    score: null,
+  }),
+  methods: {
+    calculateScore() {
+      const chuniRating = parseFloat(this.chuni) || 0;
+      const sdvxVolforce = parseFloat(this.sdvx) || 0;
+      this.score = chuniRating + sdvxVolforce;
+    },
+  },
+}
 </script>
