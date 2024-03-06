@@ -1,7 +1,17 @@
 <template>
-  <NuxtLayout>
-    <v-app>
+  <v-app>
+    <NuxtLayout>
       <NuxtPage />
-    </v-app>
-  </NuxtLayout>
+    </NuxtLayout>
+  </v-app>
 </template>
+
+<script lang="ts" setup>
+const appName = '音ゲーマーレーティング'
+ 
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - ${appName}` : appName
+  },
+})
+</script>
