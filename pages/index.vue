@@ -1,6 +1,6 @@
 <template>
   <v-container class="justify-center">
-    <div id="desc" class="text-center my-6">
+    <div id="desc" class="text-center my-8">
       <div class="text-h2 font-weight-black ma-8">音ゲーマーレーティング</div>
       <div class="text-body-1 my-4">
         いろんな音ゲーを横断して音ゲー力の総合レーティングを計算したくて作りました。<br />
@@ -9,7 +9,6 @@
       </div>
       <div class="text-body-2 ma-1">現在の計算式のバージョン: <span class="font-weight-bold">alpha (2024-03-xx)</span></div>
     </div>
-    <hr>
     <div id="calc" class="text-center my-8">
       <v-sheet class="mx-auto" width="350">
         <v-form @submit.prevent="calculateRating">
