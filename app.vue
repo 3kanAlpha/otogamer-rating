@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-const appName = '音ゲーマーレーティング（工事中）'
+const appName = '音ゲーマーレーティング（α）'
  
 useHead({
   titleTemplate: (titleChunk) => {
