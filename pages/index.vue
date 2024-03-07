@@ -12,20 +12,28 @@
     <hr>
     <div id="calc" class="text-center my-8">
       <v-sheet class="mx-auto" width="350">
-        <v-form @submit.prevent>
+        <v-form @submit.prevent="calculateRating">
           <v-text-field
             v-model="chuni"
+            :rules="rules"
             label="CHUNITHM Rating (Max)"
             placeholder="16.00"
           ></v-text-field>
           <v-text-field
             v-model="sdvx"
+            :rules="rules"
             label="SOUND VOLTEX VOLFORCE"
             placeholder="20.000"
           ></v-text-field>
           <v-btn class="mt-2" type="submit" block color="pink-darken-1">Submit</v-btn>
         </v-form>
       </v-sheet>
+    </div>
+    <div id="result" class="text-center my-8 pa-6" v-if="overallRating > 0.0">
+      <div id="overall-rating">
+        <p class="text-h5">総合レーティング</p>
+        <p class="text-h2 font-weight-black">{{ overallRating }}</p>
+      </div>
     </div>
   </v-container>
 </template>
@@ -37,11 +45,20 @@
       sdvx: '',
       rules: [
         value => {
-          if (value) return true
+          // 数値かどうかを検証
+          if (parseFloat(value)) return true
 
-          return 'You must enter a value.'
+          return '数値を入力してください。'
         },
       ],
+      overallRating: 0.0,
     }),
+    methods: {
+      calculateRating() {
+        const chuniRating = parseFloat(this.chuni) || 0.0
+        const sdvxVF = parseFloat(this.sdvx) || 0.0
+        this.overallRating = (chuniRating + sdvxVF) * 10
+      }
+    }
   }
 </script>
