@@ -29,12 +29,17 @@
         </v-form>
       </v-sheet>
     </div>
-    <div id="result" class="text-center my-8 pa-6" v-if="overallRating > 0.0">
-      <div id="overall-rating">
-        <p class="text-h5">総合レーティング</p>
-        <p class="text-h2 font-weight-black">{{ overallRating }}</p>
+    <Transition>
+      <div id="result" class="text-center my-8 pa-6" v-if="overallRating > 0.0">
+        <div id="overall-rating">
+          <p class="text-h5">総合レーティング</p>
+          <p class="text-h2 font-weight-black">{{ overallRating }}</p>
+        </div>
+        <div id="share" class="mt-8">
+          <v-btn color="primary" @click="shareToTwitter" prepend-icon="mdi-twitter" size="large">Tweet</v-btn>
+        </div>
       </div>
-    </div>
+    </Transition>
   </v-container>
 </template>
 
@@ -58,7 +63,25 @@
         const chuniRating = parseFloat(this.chuni) || 0.0
         const sdvxVF = parseFloat(this.sdvx) || 0.0
         this.overallRating = (chuniRating + sdvxVF) * 10
-      }
+      },
+      shareToTwitter() {
+        const text = `わたしの音ゲーマーレーティングは${this.overallRating}！`
+        const hashtags = 'otogamer_rating'
+        const url = `https://twitter.com/intent/tweet?text=${text}&hashtags=${hashtags}`
+        window.open(url, '_blank')
+      },
     }
   }
 </script>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
